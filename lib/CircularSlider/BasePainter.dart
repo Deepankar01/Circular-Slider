@@ -5,7 +5,8 @@ import 'package:slider_circular/HomePage.dart';
 
 class BasePainter extends CustomPainter {
   final List<DialSection> dialSections;
-  BasePainter({@required this.dialSections});
+  final int currentSliceIndex;
+  BasePainter({@required this.dialSections, @required this.currentSliceIndex});
 
   _drawArc(Paint paint, Size size, Canvas canvas, DialSection dialSection) {
     Rect rect = new Rect.fromCircle(
@@ -22,9 +23,11 @@ class BasePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    dialSections.forEach((dialSection) {
+    dialSections.asMap().forEach((int index, DialSection dialSection) {
       Paint paint = Paint()
-        ..color = dialSection.dialColor
+        ..color = currentSliceIndex >= index
+            ? dialSection.dialColor
+            : dialSection.inactiveColor
         ..style = PaintingStyle.fill;
       _drawArc(paint, size, canvas, dialSection);
     });
@@ -41,6 +44,6 @@ class BasePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 }

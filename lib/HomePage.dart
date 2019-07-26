@@ -8,11 +8,13 @@ class DialSection {
   double sweep;
   Color dialColor;
   String showText;
+  Color inactiveColor;
   DialSection(
       {@required this.start,
       @required this.sweep,
       @required this.dialColor,
-      @required this.showText});
+      @required this.showText,
+      this.inactiveColor = const Color(0xffe4e4e4)});
 }
 
 class MyHomePage extends StatefulWidget {
@@ -85,10 +87,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return angle;
   }
 
-  String _identifySlice() {
+  int _identifySliceIndex() {
     double slice = 1;
     slice = (angle / 0.628319);
-    return pieColors[slice.floor()].showText;
+    return slice.floor();
   }
 
   Widget _buildPie() {
@@ -98,13 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
       onPanEnd: _onPanEnd,
       onTapUp: _onTapUp,
       child: CustomPaint(
-        painter: BasePainter(dialSections: pieColors),
+        painter: BasePainter(
+            dialSections: pieColors, currentSliceIndex: _identifySliceIndex()),
         child: Container(
           child: CustomPaint(
             painter: IndicatorPainter(rotateAngle: angle),
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: Text(_identifySlice()),
+              child: Text(pieColors[_identifySliceIndex()].showText),
             ),
           ),
         ),
@@ -120,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: SizedBox(
-          height: boxWidthHeight / 2,
+          height: 300,
           width: boxWidthHeight,
           child: _buildPie(),
         ),
