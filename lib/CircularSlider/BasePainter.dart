@@ -32,8 +32,12 @@ class BasePainter extends CustomPainter {
     Paint paint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.fill;
-    _drawOveraly(paint, size, canvas,
-        DialSection(dialColor: Colors.white, start: 0, sweep: -pi));
+    _drawOveraly(
+        paint,
+        size,
+        canvas,
+        DialSection(
+            dialColor: Colors.white, start: 0, sweep: -pi, showText: ''));
   }
 
   @override
