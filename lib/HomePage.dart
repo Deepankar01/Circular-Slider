@@ -41,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  _onPanDown(DragDownDetails dragDownDetails) {}
   _onPanUpdate(DragUpdateDetails dragUpdateDetails) {
     _identifyAndSetAngle(dragUpdateDetails.localPosition);
   }
@@ -49,8 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
   _onTapUp(TapUpDetails tapUpDetails) {
     _identifyAndSetAngle(tapUpDetails.localPosition);
   }
-
-  _onPanEnd(DragEndDetails dragEndDetails) {}
 
   final pieColors = [
     DialSection(
@@ -95,9 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _buildPie() {
     return GestureDetector(
-      onPanDown: _onPanDown,
       onPanUpdate: _onPanUpdate,
-      onPanEnd: _onPanEnd,
       onTapUp: _onTapUp,
       child: CustomPaint(
         painter: BasePainter(
