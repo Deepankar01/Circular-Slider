@@ -107,7 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
             painter: IndicatorPainter(rotateAngle: angle),
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: Text(pieColors[_identifySliceIndex()].showText),
+              child: Text(
+                pieColors[_identifySliceIndex()].showText.toUpperCase(),
+                style: TextStyle(
+                    color: Color(0xff009bd9),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
             ),
           ),
         ),
