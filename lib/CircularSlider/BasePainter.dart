@@ -9,15 +9,14 @@ class BasePainter extends CustomPainter {
 
   _drawArc(Paint paint, Size size, Canvas canvas, DialSection dialSection) {
     Rect rect = new Rect.fromCircle(
-        center: Offset(size.width / 2, size.height / 2),
-        radius: size.height / 2);
+        center: Offset(size.width / 2, size.width / 2), radius: size.width / 2);
     canvas.drawArc(rect, dialSection.start, dialSection.sweep, true, paint);
   }
 
   _drawOveraly(Paint paint, Size size, Canvas canvas, DialSection dialSection) {
     Rect rect = new Rect.fromCircle(
-        center: Offset(size.width / 2, size.height / 2),
-        radius: size.height / 2.3);
+        center: Offset(size.width / 2, size.width / 2),
+        radius: size.width / 2.3);
     canvas.drawArc(rect, dialSection.start, dialSection.sweep, true, paint);
   }
 

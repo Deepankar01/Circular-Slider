@@ -13,10 +13,10 @@ class IndicatorPainter extends CustomPainter {
       ..strokeWidth = 10.0
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
-    canvas.drawLine(Offset(size.width / 2 - circleWidth, (size.height / 2)),
-        Offset(size.width / 4, (size.height / 2)), paint);
+    canvas.drawLine(Offset(size.width / 2 - circleWidth, (size.width / 2)),
+        Offset(size.width / 4, (size.width / 2)), paint);
     canvas.drawCircle(
-        Offset(size.width / 2, size.height / 2), circleWidth, paint);
+        Offset(size.width / 2, size.width / 2), circleWidth, paint);
     canvas.save();
     canvas.rotate(rotateAngle);
     canvas.restore();
