@@ -6,4 +6,6 @@
 4. Dev Docs [Coming Soon] (in case assistance needed ping me)
 5. Flutter Package [Coming Soon]
 
-![Demo](demo.gif)
+<p align="center">
+   <img src="demo.gif" height="500" >
+</p>
