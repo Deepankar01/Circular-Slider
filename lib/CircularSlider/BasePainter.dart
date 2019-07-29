@@ -1,7 +1,6 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:slider_circular/HomePage.dart';
+import 'DialSection.dart';
 
 class BasePainter extends CustomPainter {
   final List<DialSection> dialSections;
