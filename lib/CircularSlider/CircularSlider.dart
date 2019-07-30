@@ -16,6 +16,7 @@ class CircularSlider extends StatefulWidget {
 class _CircularSliderState extends State<CircularSlider> {
   static final double boxWidthHeight = 400;
   double angle = 0;
+  bool isFirst = true;
   Offset cursorPosition = Offset(0, boxWidthHeight / 2);
 
   _identifyAndSetAngle(Offset localPosition) {
@@ -29,10 +30,20 @@ class _CircularSliderState extends State<CircularSlider> {
   }
 
   _onPanUpdate(DragUpdateDetails dragUpdateDetails) {
+    if (isFirst) {
+      setState(() {
+        isFirst = false;
+      });
+    }
     _identifyAndSetAngle(dragUpdateDetails.localPosition);
   }
 
   _onTapUp(TapUpDetails tapUpDetails) {
+    if (isFirst) {
+      setState(() {
+        isFirst = false;
+      });
+    }
     _identifyAndSetAngle(tapUpDetails.localPosition);
   }
 
@@ -56,14 +67,17 @@ class _CircularSliderState extends State<CircularSlider> {
       child: CustomPaint(
         painter: BasePainter(
             dialSections: widget.sections,
-            currentSliceIndex: _identifySliceIndex()),
+            currentSliceIndex: this.isFirst ? -1 : _identifySliceIndex()),
         child: Container(
           child: CustomPaint(
             painter: IndicatorPainter(rotateAngle: angle),
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                widget.sections[_identifySliceIndex()].showText.toUpperCase(),
+                this.isFirst
+                    ? ''
+                    : widget.sections[_identifySliceIndex()].showText
+                        .toUpperCase(),
                 style: TextStyle(
                     color: Color(0xff009bd9),
                     fontSize: 20,
@@ -79,13 +93,12 @@ class _CircularSliderState extends State<CircularSlider> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          height: 300,
-          width: boxWidthHeight,
-          child: _buildPie(),
-        ),
+        body: Center(
+      child: Container(
+        height: 300,
+        width: boxWidthHeight,
+        child: _buildPie(),
       ),
-    );
+    ));
   }
 }
